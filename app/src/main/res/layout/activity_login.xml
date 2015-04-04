@@ -13,6 +13,12 @@
         android:layout_width="wrap_content" android:layout_height="wrap_content"
         android:layout_marginBottom="8dp" android:visibility="gone" />
 
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/logo"
+        android:layout_marginTop="80dp" />
+
     <ScrollView android:id="@+id/login_form" android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -22,7 +28,8 @@
             <AutoCompleteTextView android:id="@+id/email" android:layout_width="match_parent"
                 android:layout_height="wrap_content" android:hint="@string/prompt_email"
                 android:inputType="textEmailAddress" android:maxLines="1"
-                android:singleLine="true" />
+                android:singleLine="true"
+                android:layout_marginTop="20dp" />
 
             <EditText android:id="@+id/password" android:layout_width="match_parent"
                 android:layout_height="wrap_content" android:hint="@string/prompt_password"
@@ -37,22 +44,16 @@
                 android:background="#506699cc"
                 android:text="[PROMPT INFO BASED ON INPUT]"
                 android:id="@+id/textView"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="50dp"
                 android:textSize="13dp"
                 android:gravity="center_horizontal" />
 
             <Button android:id="@+id/email_sign_in_button" style="?android:textAppearanceSmall"
                 android:layout_width="match_parent" android:layout_height="wrap_content"
-                android:layout_marginTop="16dp" android:text="@string/action_sign_in"
+                android:layout_marginTop="20dp" android:text="@string/action_sign_in"
                 android:textStyle="bold"
                 android:textColor="#ffffff"
                 android:background="#50cccccc"/>
-
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="350dp"
-                android:src="@drawable/logo"
-                android:layout_marginTop="10dp" />
 
         </LinearLayout>
     </ScrollView>
