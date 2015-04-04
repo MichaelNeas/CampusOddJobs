@@ -24,6 +24,9 @@ import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Spinner;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemSelectedListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -51,6 +54,8 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
     private EditText mPasswordView;
     private View mProgressView;
     private View mLoginFormView;
+    private String[] schools;
+    private Spinner spinner;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,6 +75,25 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
                     return true;
                 }
                 return false;
+            }
+        });
+
+        // Set up school selection drop down list
+        schools = getResources().getStringArray(R.array.school_list);
+        spinner = (Spinner) findViewById(R.id.school_spinner);
+        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item, schools);
+        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(dataAdapter);
+
+        spinner.setOnItemSelectedListener(new OnItemSelectedListener() {
+
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view,int position, long id) {
+
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> arg0) {
+
             }
         });
 
