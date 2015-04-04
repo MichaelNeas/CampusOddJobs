@@ -16,6 +16,7 @@ import android.util.Log;
 import android.view.Window;
 import android.view.WindowManager;
 
+
 public class SplashActivity extends Activity {
 
     private static String TAG = SplashActivity.class.getName();
