@@ -27,6 +27,7 @@ import android.widget.TextView;
 import android.widget.Spinner;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
+import android.content.Intent;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -52,10 +53,10 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
     // UI references.
     private AutoCompleteTextView mEmailView;
     private EditText mPasswordView;
+    private Spinner mSchoolView;
     private View mProgressView;
     private View mLoginFormView;
     private String[] schools;
-    private Spinner spinner;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,28 +81,25 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
 
         // Set up school selection drop down list
         schools = getResources().getStringArray(R.array.school_list);
-        spinner = (Spinner) findViewById(R.id.school_spinner);
+        mSchoolView = (Spinner) findViewById(R.id.school);
         ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item, schools);
         dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner.setAdapter(dataAdapter);
-
-        spinner.setOnItemSelectedListener(new OnItemSelectedListener() {
-
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view,int position, long id) {
-
-            }
-            @Override
-            public void onNothingSelected(AdapterView<?> arg0) {
-
-            }
-        });
+        mSchoolView.setAdapter(dataAdapter);
 
         Button mEmailSignInButton = (Button) findViewById(R.id.email_sign_in_button);
         mEmailSignInButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
                 attemptLogin();
+            }
+        });
+
+        // Temporary login verification bypass
+        Button devBypass = (Button) findViewById(R.id.developer_bypass);
+        devBypass.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                bypassLogin();
             }
         });
 
@@ -113,6 +111,11 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
         getLoaderManager().initLoader(0, null, this);
     }
 
+    private void bypassLogin() {        // bypass login
+        Intent intent = new Intent(LoginActivity.this,MainActivity.class);
+        LoginActivity.this.startActivity(intent);
+        LoginActivity.this.finish();
+    }
 
     /**
      * Attempts to sign in or register the account specified by the login form.
@@ -131,6 +134,7 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
         // Store values at the time of the login attempt.
         String email = mEmailView.getText().toString();
         String password = mPasswordView.getText().toString();
+        int schoolNum = mSchoolView.getSelectedItemPosition();         // position 0 designates no selection
 
         boolean cancel = false;
         View focusView = null;
@@ -154,6 +158,12 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
             cancel = true;
         }
 
+        // Check for valid school selection
+        if (schoolNum == 0){
+            // TODO highlight box in red or something
+            cancel = true;
+        }
+
         if (cancel) {
             // There was an error; don't attempt login and focus the first
             // form field with an error.
@@ -162,19 +172,23 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
             // Show a progress spinner, and kick off a background task to
             // perform the user login attempt.
             showProgress(true);
-            mAuthTask = new UserLoginTask(email, password);
+            mAuthTask = new UserLoginTask(email, password, schoolNum);
             mAuthTask.execute((Void) null);
         }
     }
 
     private boolean isEmailValid(String email) {
         //TODO: Replace this with your own logic
-        return email.contains("@uconn.edu");
+        return email.contains("@");
     }
 
     private boolean isPasswordValid(String password) {
         //TODO: Replace this with your own logic
         return password.length() > 4;
+    }
+
+    private boolean isSchoolValid(int school) {
+        return mSchoolView.getSelectedItemPosition() > 0;              // position 0 is empty
     }
 
     /**
@@ -275,10 +289,12 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
 
         private final String mEmail;
         private final String mPassword;
+        private final int mSchoolNum;
 
-        UserLoginTask(String email, String password) {
+        UserLoginTask(String email, String password, int schoolNum) {
             mEmail = email;
             mPassword = password;
+            mSchoolNum = schoolNum;
         }
 
         @Override

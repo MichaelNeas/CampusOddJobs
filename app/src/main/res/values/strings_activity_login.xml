@@ -15,7 +15,10 @@
     <string name="school_label">(School)</string>
 
     <string-array name="school_list">
+        <item>-Select your school-</item>
         <item>University of Connecticut</item>
+        <item>Eastern Connecticut State University</item>
+        <item>Central Connecticut State University</item>
         <!-- add other schools here -->
     </string-array>
 </resources>
