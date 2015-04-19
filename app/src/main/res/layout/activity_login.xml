@@ -45,12 +45,30 @@
                 android:spinnerMode="dropdown"
                 android:layout_marginTop="10dp" />
 
-            <Button android:id="@+id/email_sign_in_button" style="?android:textAppearanceSmall"
-                android:layout_width="match_parent" android:layout_height="wrap_content"
-                android:layout_marginTop="20dp" android:text="@string/action_sign_in"
-                android:textStyle="bold"
-                android:textColor="#ffffff"
-                android:background="#50cccccc"/>
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="15dp"
+                android:weightSum="1.0">
+
+                <Button android:id="@+id/email_register_button"
+                    android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:text="@string/action_register"
+                    android:textColor="#ffffff"
+                    android:background="#50cccccc"
+                    android:layout_marginRight="5dp"
+                    android:layout_weight="0.5"/>
+
+                <Button android:id="@+id/email_sign_in_button"
+                    android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:text="@string/action_sign_in"
+                    android:textColor="#ffffff"
+                    android:background="#50cccccc"
+                    android:layout_marginLeft="5dp"
+                    android:layout_weight="0.5"/>
+
+            </LinearLayout>
 
             <Button android:id="@+id/developer_bypass" style="?android:textAppearanceSmall"
                 android:layout_width="match_parent" android:layout_height="wrap_content"
