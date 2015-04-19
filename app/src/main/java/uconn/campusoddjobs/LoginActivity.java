@@ -94,6 +94,14 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
             }
         });
 
+        Button mEmailRegisterButton = (Button) findViewById(R.id.email_register_button);
+        mEmailRegisterButton.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                toRegistration();
+            }
+        });
+
         // Temporary login verification bypass
         Button devBypass = (Button) findViewById(R.id.developer_bypass);
         devBypass.setOnClickListener(new OnClickListener() {
@@ -111,12 +119,15 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
         getLoaderManager().initLoader(0, null, this);
     }
 
-    /**
-     *  bypass login
-     */
-    private void bypassLogin() {
-        Intent goToMainActivity = new Intent(LoginActivity.this,MainActivity.class);
-        LoginActivity.this.startActivity(goToMainActivity);
+    private void toRegistration() {
+        Intent intent = new Intent(LoginActivity.this,Register.class);
+        LoginActivity.this.startActivity(intent);
+        LoginActivity.this.finish();
+    }
+
+    private void bypassLogin() {        // bypass login
+        Intent intent = new Intent(LoginActivity.this,MainActivity.class);
+        LoginActivity.this.startActivity(intent);
         LoginActivity.this.finish();
     }
 
