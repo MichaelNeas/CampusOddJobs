@@ -54,7 +54,7 @@
 
             <Button android:id="@+id/developer_bypass" style="?android:textAppearanceSmall"
                 android:layout_width="match_parent" android:layout_height="wrap_content"
-                android:layout_marginTop="160dp" android:text="Dev"
+                android:layout_marginTop="160dp" android:text="Devoloper"
                 android:textStyle="bold"
                 android:textColor="#ffffff"
                 android:background="#50cccccc" />
