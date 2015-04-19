@@ -17,6 +17,7 @@ import android.view.ViewGroup;
 import android.support.v4.widget.DrawerLayout;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
+import android.content.Intent;
 
 
 public class MainActivity extends ActionBarActivity
@@ -39,7 +40,6 @@ public class MainActivity extends ActionBarActivity
 
         mNavigationDrawerFragment = (NavigationDrawerFragment)
                 getSupportFragmentManager().findFragmentById(R.id.navigation_drawer);
-        mTitle = getTitle();
 
         // Set up the drawer.
         mNavigationDrawerFragment.setUp(
@@ -47,6 +47,9 @@ public class MainActivity extends ActionBarActivity
                 (DrawerLayout) findViewById(R.id.drawer_layout));
     }
 
+    /**
+     * User selection in the navigation bar
+     */
     @Override
     public void onNavigationDrawerItemSelected(int position) {
         Fragment objectFragment = null;
@@ -55,17 +58,20 @@ public class MainActivity extends ActionBarActivity
         {
             case 0:
                 objectFragment = new PostingBoardFragment();
+                mTitle = getString(R.string.title_section1);
                 break;
             case 1:
                 objectFragment = new MessagesFragment();
+                mTitle = getString(R.string.title_section2);
                 break;
             case 2:
                 objectFragment = new MyAccountFragment();
+                mTitle = getString(R.string.title_section3);
                 break;
             case 3:
                 objectFragment = new ContactUsFragment();
+                mTitle = getString(R.string.title_section4);
                 break;
-
         }
         // update the main content by replacing fragments
         FragmentManager fragmentManager = getSupportFragmentManager();
@@ -74,16 +80,23 @@ public class MainActivity extends ActionBarActivity
                 .commit();
     }
 
+    /**
+     * Assign String titles to the menu
+     *
+     */
     public void onSectionAttached(int number) {
         switch (number) {
-            case 1:
+            case 0:
                 mTitle = getString(R.string.title_section1);
                 break;
-            case 2:
+            case 1:
                 mTitle = getString(R.string.title_section2);
                 break;
-            case 3:
+            case 2:
                 mTitle = getString(R.string.title_section3);
+                break;
+            case 3:
+                mTitle = getString(R.string.title_section4);
                 break;
         }
     }

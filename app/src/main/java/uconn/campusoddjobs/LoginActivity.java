@@ -111,9 +111,12 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
         getLoaderManager().initLoader(0, null, this);
     }
 
-    private void bypassLogin() {        // bypass login
-        Intent intent = new Intent(LoginActivity.this,MainActivity.class);
-        LoginActivity.this.startActivity(intent);
+    /**
+     *  bypass login
+     */
+    private void bypassLogin() {
+        Intent goToMainActivity = new Intent(LoginActivity.this,MainActivity.class);
+        LoginActivity.this.startActivity(goToMainActivity);
         LoginActivity.this.finish();
     }
 
