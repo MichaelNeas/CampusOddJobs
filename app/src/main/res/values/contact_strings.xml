@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="title">Share Any Thoughts!</string>
+    <string name="subTitle">Developer Team</string>
+    <string name="name1">Michael Neas</string>
+    <string name="email1">Michael.Neas@uconn.edu</string>
+    <string name="name2">Joey Hanlon</string>
+    <string name="email2">Edward.Hanlon@uconn.edu</string>
+    <string name="name3">Akshara Thejaswi</string>
+    <string name="email3">Akshara.Thejaswi@uconn.edu</string>
+    <string name="name4">Brianna Boyce</string>
+    <string name="email4">Brianna.Boyce@uconn.edu</string>
+    <string name="sendButton">Send</string>
+    <string name="message">Considerations</string>
+</resources>
