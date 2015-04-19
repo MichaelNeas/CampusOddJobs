@@ -4,14 +4,17 @@
     <!-- Strings related to login -->
     <string name="prompt_email">Email</string>
     <string name="prompt_password">Password</string>
-    <string name="action_sign_in">Sign in</string>
+    <string name="action_sign_in">Sign In</string>
     <string name="action_register">Register</string>
-    <string name="action_sign_in_short">Sign in</string>
+    <string name="action_sign_in_short">SIGN IN</string>
 
     <string name="error_invalid_email">Invalid email</string>
     <string name="error_invalid_password">This password is too short</string>
     <string name="error_incorrect_password">This password is incorrect</string>
     <string name="error_field_required">This field is required</string>
+
+    <!-- Strings related to registration -->
+
 
     <string name="school_label">(School)</string>
 

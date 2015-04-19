@@ -53,16 +53,20 @@
                 android:weightSum="1.0">
 
                 <Button android:id="@+id/email_register_button"
-                    android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:layout_width="wrap_content" android:layout_height="40dp"
                     android:text="@string/action_register"
+                    android:textSize="15dp"
+                    android:textStyle="bold"
                     android:textColor="#ffffff"
                     android:background="#50cccccc"
                     android:layout_marginRight="5dp"
                     android:layout_weight="0.5"/>
 
                 <Button android:id="@+id/email_sign_in_button"
-                    android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:layout_width="wrap_content" android:layout_height="40dp"
                     android:text="@string/action_sign_in"
+                    android:textSize="15dp"
+                    android:textStyle="bold"
                     android:textColor="#ffffff"
                     android:background="#50cccccc"
                     android:layout_marginLeft="5dp"
