@@ -29,7 +29,8 @@
         android:enabled="true"
         android:clickable="true"
         android:visibility="visible"
-        android:autoText="false" />
+        android:autoText="false"
+        android:background="@drawable/give_border"/>
 
     <Button
         android:layout_width="wrap_content"
@@ -38,7 +39,8 @@
         android:id="@+id/button"
         android:layout_below="@+id/editText2"
         android:layout_alignRight="@+id/editText2"
-        android:layout_alignEnd="@+id/editText2" />
+        android:layout_alignEnd="@+id/editText2"
+        android:nestedScrollingEnabled="false"/>
 
     <TextView
         android:layout_width="wrap_content"
