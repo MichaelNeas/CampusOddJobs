@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent" android:layout_height="match_parent"
-    android:gravity="center_horizontal">
+    android:gravity="center_horizontal" android:background="#cccccc">
 
     <TextView
         android:layout_width="wrap_content"
@@ -142,5 +142,13 @@
         android:layout_alignTop="@+id/textView8"
         android:layout_alignLeft="@+id/textView7"
         android:layout_alignStart="@+id/textView7" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/logo"
+        android:layout_marginTop="41dp"
+        android:layout_below="@+id/textView8"
+        android:layout_centerHorizontal="true" />
 
 </RelativeLayout>
