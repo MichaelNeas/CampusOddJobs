@@ -25,10 +25,8 @@ import android.widget.Toast;
 public class Register extends Activity {
 
 
-    private EditText fname;
-    private EditText lname;
     private EditText rEmailView;
-    private EditText username;
+    private EditText rUsernameView;
     private EditText rPasswordView;
 
     private Button rRegisterButton;
@@ -52,9 +50,7 @@ public class Register extends Activity {
         rEmailView = (EditText) findViewById(R.id.email);
         rPasswordView = (EditText) findViewById(R.id.pword);
         // TODO implement the remaining elements in the database (and make a column for karma)
-        fname = (EditText) findViewById(R.id.fname);
-        lname = (EditText) findViewById(R.id.lname);
-        username = (EditText) findViewById(R.id.uname);
+        rUsernameView = (EditText) findViewById(R.id.uname);
 
         rRegisterButton = (Button) findViewById(R.id.register);
         rRegisterButton.setOnClickListener(new View.OnClickListener() {
@@ -99,11 +95,17 @@ public class Register extends Activity {
             int success;
             String email = rEmailView.getText().toString();
             String password = rPasswordView.getText().toString();
+            // test add username and karma
+            String username = rUsernameView.getText().toString();
+
             try {
                 // Building Parameters
                 List<NameValuePair> params = new ArrayList<NameValuePair>();
                 params.add(new BasicNameValuePair("email", email));
                 params.add(new BasicNameValuePair("password", password));
+                // test username add
+                params.add(new BasicNameValuePair("username", username));
+                // test add
 
                 Log.d("request!", "starting");
 
