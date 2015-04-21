@@ -34,20 +34,9 @@ public class LoginActivity extends Activity implements OnClickListener{
     JSONparser jsonParser = new JSONparser();
 
     //php login script location:
-
-    //localhost :
-    //testing on your device
-    //put your local ip instead,  on windows, run CMD > ipconfig
-    //or in mac's terminal type ifconfig and look for the ip under en0 or en1
-    // private static final String LOGIN_URL = "http://xxx.xxx.x.x:1234/webservice/login.php";
-
-    //testing on Emulator:
     private static final String LOGIN_URL = "http://campusoddjobs.com/oddjobs/login.php";
 
-    //testing from a real server:
-    //private static final String LOGIN_URL = "http://www.yourdomain.com/webservice/login.php";
-
-    //JSON element ids from repsonse of php script:
+    // json ids
     private static final String TAG_SUCCESS = "success";
     private static final String TAG_MESSAGE = "message";
 
@@ -76,7 +65,7 @@ public class LoginActivity extends Activity implements OnClickListener{
                 public void onClick(View view) {
                     Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                     LoginActivity.this.startActivity(intent);
-                    //LoginActivity.this.finish();
+                    // LoginActivity.this.finish(); // if you want to use the android back button
                 }
             });
             // -- end --
@@ -101,9 +90,6 @@ public class LoginActivity extends Activity implements OnClickListener{
 
     class AttemptLogin extends AsyncTask<String, String, String> {
 
-        /**
-         * Before starting background thread Show Progress Dialog
-         * */
         boolean failure = false;
 
         @Override
@@ -118,7 +104,6 @@ public class LoginActivity extends Activity implements OnClickListener{
 
         @Override
         protected String doInBackground(String... args) {
-            // TODO Auto-generated method stub
             // Check for success tag
             int success;
             String email = mEmailView.getText().toString();
@@ -158,9 +143,6 @@ public class LoginActivity extends Activity implements OnClickListener{
 
         }
 
-        /**
-         * After completing background task Dismiss the progress dialog
-         * **/
         protected void onPostExecute(String file_url) {
             // dismiss the dialog once product deleted
             pDialog.dismiss();

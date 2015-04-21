@@ -81,9 +81,6 @@ public class Register extends Activity {
 
     class CreateUser extends AsyncTask<String, String, String> {
 
-        /**
-         * Before starting background thread Show Progress Dialog
-         */
         boolean failure = false;
 
         @Override
@@ -98,7 +95,6 @@ public class Register extends Activity {
 
         @Override
         protected String doInBackground(String... args) {
-            // TODO Auto-generated method stub
             // Check for success tag
             int success;
             String email = rEmailView.getText().toString();
@@ -136,10 +132,6 @@ public class Register extends Activity {
             return null;
         }
 
-        /**
-         * After completing background task Dismiss the progress dialog
-         * *
-         */
         protected void onPostExecute(String file_url) {
             // dismiss the dialog once product deleted
             pDialog.dismiss();
