@@ -168,7 +168,7 @@ public class LoginActivity extends Activity implements OnClickListener, LoaderCa
 
     }
 
-    // ---------- ANDROID CODE TO AUTOCOMPLETE EMAIL ENTRY ----------
+    // ---------- ANDROID DEFAULT CODE TO AUTOCOMPLETE EMAIL ENTRY ----------
     @Override
     public Loader<Cursor> onCreateLoader(int i, Bundle bundle) {
         return new CursorLoader(this,
