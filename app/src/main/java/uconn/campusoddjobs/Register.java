@@ -56,7 +56,12 @@ public class Register extends Activity {
         rRegisterButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view){
-                new CreateUser().execute();
+                if (isValidEmail(rEmailView.getText().toString()) == true) {
+                    new CreateUser().execute();
+                }
+                else{
+                    Toast.makeText(getApplicationContext(),"School not supported yet!",Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
@@ -73,6 +78,14 @@ public class Register extends Activity {
         Intent intent = new Intent(Register.this, LoginActivity.class);
         Register.this.startActivity(intent);
         Register.this.finish();
+    }
+
+    private boolean isValidEmail(String em){
+        boolean validity = false;
+        if (em.contains("@uconn.edu")){
+            validity = true;
+        }
+        return validity;
     }
 
     class CreateUser extends AsyncTask<String, String, String> {
