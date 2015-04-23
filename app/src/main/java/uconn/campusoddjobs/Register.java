@@ -80,6 +80,7 @@ public class Register extends Activity {
         Register.this.finish();
     }
 
+    // TODO support more schools, iterate through a string array of supported @ domains
     private boolean isValidEmail(String em){
         boolean validity = false;
         if (em.contains("@uconn.edu")){
