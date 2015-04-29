@@ -1,17 +1,13 @@
 package uconn.campusoddjobs;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import org.apache.http.NameValuePair;
-import org.apache.http.message.BasicNameValuePair;
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import android.app.Activity;
+import android.app.LoaderManager.LoaderCallbacks;
 import android.app.ProgressDialog;
+import android.content.CursorLoader;
 import android.content.Intent;
 import android.content.Loader;
+import android.content.SharedPreferences;
+import android.database.Cursor;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -20,14 +16,18 @@ import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
-import android.widget.AutoCompleteTextView;
-import android.database.Cursor;
-import android.app.LoaderManager.LoaderCallbacks;
-import android.content.CursorLoader;
-import android.content.Loader;
+
+import org.apache.http.NameValuePair;
+import org.apache.http.message.BasicNameValuePair;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class LoginActivity extends Activity implements OnClickListener, LoaderCallbacks<Cursor>{
 
@@ -67,22 +67,6 @@ public class LoginActivity extends Activity implements OnClickListener, LoaderCa
         //register listeners
         mSignIn.setOnClickListener(this);
         mRegister.setOnClickListener(this);
-
-            // -- Temporary login verification bypass --
-            Button devBypass = (Button) findViewById(R.id.developer_bypass);
-            devBypass.setOnClickListener(new OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                    LoginActivity.this.startActivity(intent);
-                    // LoginActivity.this.finish(); // if you want to use the android back button
-                }
-            });
-            // -- end --
-    }
-
-    private void populateAutoComplete() {
-        getLoaderManager().initLoader(0, null, this);
     }
 
     @Override
@@ -140,6 +124,7 @@ public class LoginActivity extends Activity implements OnClickListener, LoaderCa
                 success = json.getInt(TAG_SUCCESS);
                 if (success == 1) {
                     Log.d("Login Successful!", json.toString());
+                    storeEmail(email);                      // store in shared prefs
                     Intent i = new Intent(LoginActivity.this, MainActivity.class);
                     finish();
                     startActivity(i);
@@ -168,7 +153,19 @@ public class LoginActivity extends Activity implements OnClickListener, LoaderCa
 
     }
 
+    private void storeEmail(String em){       // store email in shared preferences
+        SharedPreferences prefs = getSharedPreferences("user_settings", MODE_PRIVATE);
+        SharedPreferences.Editor editor = prefs.edit();
+        editor.putString("email",em);
+        editor.commit();
+    }
+
     // ---------- ANDROID DEFAULT CODE TO AUTOCOMPLETE EMAIL ENTRY ----------
+
+    private void populateAutoComplete() {
+        getLoaderManager().initLoader(0, null, this);
+    }
+
     @Override
     public Loader<Cursor> onCreateLoader(int i, Bundle bundle) {
         return new CursorLoader(this,

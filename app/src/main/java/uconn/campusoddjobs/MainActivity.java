@@ -1,23 +1,18 @@
 package uconn.campusoddjobs;
 
 import android.app.Activity;
-import android.support.v7.app.ActionBarActivity;
-import android.support.v7.app.ActionBar;
+import android.content.Context;
+import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.content.Context;
-import android.os.Build;
-import android.os.Bundle;
-import android.text.Editable;
-import android.view.Gravity;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.ActionBarActivity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.support.v4.widget.DrawerLayout;
-import android.widget.ArrayAdapter;
-import android.widget.EditText;
 
 
 public class MainActivity extends ActionBarActivity
@@ -28,9 +23,13 @@ public class MainActivity extends ActionBarActivity
      */
     private NavigationDrawerFragment mNavigationDrawerFragment;
     private CharSequence mTitle;
+    public static Context appContext;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+        appContext = getApplicationContext();       // used to access shared preferences in fragments / helper class
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
@@ -49,6 +48,7 @@ public class MainActivity extends ActionBarActivity
     @Override
     public void onNavigationDrawerItemSelected(int position) {
         Fragment objectFragment = null;
+        Bundle bundle = new Bundle();
 
         switch (position)
         {
@@ -69,6 +69,8 @@ public class MainActivity extends ActionBarActivity
                 mTitle = getString(R.string.title_section4);
                 break;
         }
+
+        objectFragment.setArguments(bundle);        // set email as argument for next fragment
         // update the main content by replacing fragments
         FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction()
@@ -172,4 +174,9 @@ public class MainActivity extends ActionBarActivity
                     getArguments().getInt(ARG_SECTION_NUMBER));
         }
     }
+
+    public static Context getAppContext(){
+        return appContext;
+    }
+
 }
