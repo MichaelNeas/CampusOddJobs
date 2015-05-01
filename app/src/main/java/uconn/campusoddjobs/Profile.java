@@ -1,10 +1,15 @@
 package uconn.campusoddjobs;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.os.AsyncTask;
+import android.util.Log;
 
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,7 +17,7 @@ import java.util.List;
 /**
  * Created by Joey on 4/23/15.
  */
-public class Profile{
+public class Profile extends Activity{
 
     private int id;
     private String email;
@@ -22,30 +27,32 @@ public class Profile{
     private String accepted_jobs;
     private int karma;
 
-    private static final String PROFILE_URL = "http://campusoddjobs.com/oddjobs/buildprofile.php";
-    private JSONparser json = new JSONparser();
+    public String getTest;
 
-    public Profile() {
+    private static final String PROFILE_URL = "http://campusoddjobs.com/oddjobs/buildprofile.php";
+    JSONparser jparser = new JSONparser();
+
+    public Profile(){
 
         email = getEmailFromMemory();
-        List<NameValuePair> params = new ArrayList<NameValuePair>();
-        params.add(new BasicNameValuePair("email", email));
+        new buildProfile().execute();
 
-        // try {
+       // try {
+
+            //JSONObject c = new JSONObject(def);
+            //username = c.getString("username");
 
             // TODO create json object and properly communicate with buildprofile.php
             // email is stored already and that works fine... need to run against DB
-            // JSONObject jobj = json.makeHttpRequest(PROFILE_URL,"GET", params);
-
-            // username = jobj.getString("username");
+            // username = c.getString("username");
             // bio = jobj.getString("bio");
             // karma = jobj.getInt("karma");
             // posted_jobs = jobj.getString("posted_jobs");
             // accepted_jobs = jobj.getString("accepted_jobs");
 
-        // } catch (JSONException e) {
-            // e.printStackTrace();
-        // }
+         // } catch (JSONException e) {
+          //   e.printStackTrace();
+          //}
 
      }
 
@@ -73,6 +80,30 @@ public class Profile{
         SharedPreferences prefs = context.getSharedPreferences("user_settings", Context.MODE_PRIVATE);
         String extractedText = prefs.getString("email", "error: no email");
         return extractedText;
+    }
+
+    class buildProfile extends AsyncTask<String, String, String> {
+
+        @Override
+        protected String doInBackground(String... args) {
+            try {
+                // Building Parameters
+                List<NameValuePair> params = new ArrayList<NameValuePair>();
+                params.add(new BasicNameValuePair("email", email));
+
+                JSONObject json = jparser.makeHttpRequest(PROFILE_URL, "GET", params);
+
+                username = json.getString("username");
+                Log.d("Penis", username());
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+            return null;
+
+        }
+
     }
 }
 
