@@ -1,8 +1,5 @@
 package uconn.campusoddjobs;
 
-import android.app.Activity;
-import android.content.Context;
-import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.util.Log;
 
@@ -17,42 +14,23 @@ import java.util.List;
 /**
  * Created by Joey on 4/23/15.
  */
-public class Profile extends Activity{
+public class Profile{
 
-    private int id;
     private String email;
+    private int id;
     private String username;
     private String bio;
     private String posted_jobs;
     private String accepted_jobs;
     private int karma;
 
-    public String getTest;
-
     private static final String PROFILE_URL = "http://campusoddjobs.com/oddjobs/buildprofile.php";
     JSONparser jparser = new JSONparser();
 
     public Profile(){
 
-        email = getEmailFromMemory();
+        //email = getEmailFromMemory();
         new buildProfile().execute();
-
-       // try {
-
-            //JSONObject c = new JSONObject(def);
-            //username = c.getString("username");
-
-            // TODO create json object and properly communicate with buildprofile.php
-            // email is stored already and that works fine... need to run against DB
-            // username = c.getString("username");
-            // bio = jobj.getString("bio");
-            // karma = jobj.getInt("karma");
-            // posted_jobs = jobj.getString("posted_jobs");
-            // accepted_jobs = jobj.getString("accepted_jobs");
-
-         // } catch (JSONException e) {
-          //   e.printStackTrace();
-          //}
 
      }
 
@@ -83,12 +61,12 @@ public class Profile extends Activity{
     public void setKarma(int k){karma = k;}
     // -----------------------------
 
-    private String getEmailFromMemory() {          // pulls email from shared preferences
-        Context context = MainActivity.getAppContext();
-        SharedPreferences prefs = context.getSharedPreferences("user_settings", Context.MODE_PRIVATE);
-        String extractedText = prefs.getString("email", "error: no email");
-        return extractedText;
-    }
+    //private String getEmailFromMemory() {          // pulls email from shared preferences
+        //Context context = MainActivity.getAppContext();
+        //SharedPreferences prefs = context.getSharedPreferences("user_settings", Context.MODE_PRIVATE);
+        //String extractedText = prefs.getString("email", "error: no email");
+        //return extractedText;
+    //}
 
     class buildProfile extends AsyncTask<String, String, String> {
 
@@ -102,7 +80,7 @@ public class Profile extends Activity{
                 JSONObject json = jparser.makeHttpRequest(PROFILE_URL, "GET", params);
 
                 setUsername(json.getString("username"));
-                Log.d("Check", username());
+                Log.d("Check", username);
 
             } catch (JSONException e) {
                 e.printStackTrace();
@@ -113,5 +91,7 @@ public class Profile extends Activity{
         }
 
     }
+
+
 }
 

@@ -1,7 +1,8 @@
 package uconn.campusoddjobs;
 
 import android.app.Activity;
-import android.content.Context;
+import android.content.SharedPreferences;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -14,6 +15,14 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
+import org.apache.http.NameValuePair;
+import org.apache.http.message.BasicNameValuePair;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.List;
+
 
 public class MainActivity extends ActionBarActivity
         implements NavigationDrawerFragment.NavigationDrawerCallbacks {
@@ -23,12 +32,11 @@ public class MainActivity extends ActionBarActivity
      */
     private NavigationDrawerFragment mNavigationDrawerFragment;
     private CharSequence mTitle;
-    public static Context appContext;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
-        appContext = getApplicationContext();       // used to access shared preferences in fragments / helper class
+        new buildProfile().execute();
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
@@ -175,8 +183,58 @@ public class MainActivity extends ActionBarActivity
         }
     }
 
-    public static Context getAppContext(){
-        return appContext;
+    public SharedPreferences getSharedPrefs(){
+        SharedPreferences prefs = getSharedPreferences("user_settings", MODE_PRIVATE);
+        return prefs;
     }
+
+    class buildProfile extends AsyncTask<String, String, String> {
+
+        JSONparser jparser = new JSONparser();
+        private static final String PROFILE_URL = "http://campusoddjobs.com/oddjobs/buildprofile.php";
+        private String email = getEmailFromMemory();
+
+        @Override
+        protected String doInBackground(String... args) {
+            try {
+                // Building Parameters
+                List<NameValuePair> params = new ArrayList<NameValuePair>();
+                params.add(new BasicNameValuePair("email", email));
+
+                JSONObject json = jparser.makeHttpRequest(PROFILE_URL, "GET", params);
+
+                storeInfo(json.getString("username"),
+                        json.getString("bio"),
+                        json.getString("posted_jobs"),
+                        json.getString("accepted_jobs"),
+                        json.getInt("karma"));
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+            return null;
+
+        }
+
+    }
+
+    private String getEmailFromMemory() {          // pulls email from shared preferences
+        SharedPreferences prefs = getSharedPreferences("user_settings", MODE_PRIVATE);
+        String extractedText = prefs.getString("email", "error: no email");
+        return extractedText;
+    }
+
+    private void storeInfo(String un,String b,String pj,String aj,int k){       // store email in shared preferences
+        SharedPreferences prefs = getSharedPreferences("user_settings", MODE_PRIVATE);
+        SharedPreferences.Editor editor = prefs.edit();
+        editor.putString("username",un);
+        editor.putString("bio",b);
+        editor.putString("posted_jobs",pj);
+        editor.putString("accepted_jobs",aj);
+        editor.putInt("karma",k);
+        editor.commit();
+    }
+
 
 }
