@@ -1,16 +1,15 @@
 package uconn.campusoddjobs;
 
 
-import android.app.DialogFragment;
 import android.app.ProgressDialog;
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -38,7 +37,9 @@ public class EditInfoFragment extends Fragment implements View.OnClickListener {
     private EditText userEmail;
     private EditText userName;
     private String bioChange;
-    private String changeEmail;
+    private String currentEmail;
+    private String userChange;
+    private String emailChange;
 
     private ProgressDialog pDialog;
 
@@ -58,13 +59,13 @@ public class EditInfoFragment extends Fragment implements View.OnClickListener {
     {
         rootview = inflater.inflate(R.layout.edit_info_layout, container, false);
 
-        changeEmail = getEmailFromMemory();
+        currentEmail = getEmailFromMemory();
 
         userName = (EditText) rootview.findViewById(R.id.editText);
         userName.setText(getInfo()[0]);
 
         userEmail = (EditText) rootview.findViewById(R.id.editText3);
-        userEmail.setText(changeEmail);
+        userEmail.setText(currentEmail);
 
         userBio = (EditText) rootview.findViewById(R.id.editText2);
         userBio.setText(getInfo()[1]);
@@ -82,11 +83,16 @@ public class EditInfoFragment extends Fragment implements View.OnClickListener {
     @Override
     public void onClick(View v) {
         bioChange = userBio.getText().toString();
-        //userChange = userName.getText().toString();
+        userChange = userName.getText().toString();
+        emailChange = userEmail.getText().toString();
 
-        if(bioChange.length() < 1)
-            Toast.makeText(getActivity(), "You know more than that!",
+        if(bioChange.length() < 1 || userChange.length() == 0)
+            Toast.makeText(getActivity(), "You gotta do more than that",
                     Toast.LENGTH_SHORT).show();
+        else if(!emailChange.contains("@uconn.edu")){
+            Toast.makeText(getActivity(), "Email not supported",
+                    Toast.LENGTH_SHORT).show();
+        }
         else {
             //Intent intent = new Intent(Intent.ACTION_SEND);
             new UpdateInfo().execute();
@@ -99,7 +105,7 @@ public class EditInfoFragment extends Fragment implements View.OnClickListener {
                 public void run() {
                     getActivity().recreate();
                 }
-            }, 1000);
+            }, 2000);
         }
     }
 
