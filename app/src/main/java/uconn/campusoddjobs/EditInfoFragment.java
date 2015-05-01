@@ -1,5 +1,6 @@
 package uconn.campusoddjobs;
 
+
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
@@ -12,7 +13,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import org.apache.http.NameValuePair;
@@ -34,14 +34,14 @@ public class EditInfoFragment extends Fragment implements View.OnClickListener {
     private EditText userName;
     private String bioChange;
     private String changeEmail;
-    private String userChange;
 
-    private static final String CONTACT_URL = "http://campusoddjobs.com/oddjobs/infochange.php";
+    private static final String INFO_URL = "http://campusoddjobs.com/oddjobs/infochange.php";
 
     private static final String TAG_SUCCESS = "success";
     private static final String TAG_MESSAGE = "message";
 
     JSONparser jsonParser = new JSONparser();
+    JSONparser jparse = new JSONparser();
 
 
     View rootview;
@@ -62,19 +62,20 @@ public class EditInfoFragment extends Fragment implements View.OnClickListener {
         userBio = (EditText) rootview.findViewById(R.id.editText2);
         userBio.setText(getInfo()[1]);
 
-        updateButton = (Button)rootview.findViewById(R.id.button);
-        updateButton.setOnClickListener(this);
-
         userBio = (EditText)rootview.findViewById(R.id.editText2);
         userEmail = (EditText)rootview.findViewById(R.id.editText3);
         userName = (EditText)rootview.findViewById(R.id.editText);
+
+        updateButton = (Button)rootview.findViewById(R.id.button);
+        updateButton.setOnClickListener(this);
+
         return rootview;
     }
 
     @Override
     public void onClick(View v) {
         bioChange = userBio.getText().toString();
-        userChange = userName.getText().toString();
+        //userChange = userName.getText().toString();
 
         if(bioChange.length() < 1)
             Toast.makeText(getActivity(), "You know more than that!",
@@ -91,38 +92,43 @@ public class EditInfoFragment extends Fragment implements View.OnClickListener {
 
     class UpdateInfo extends AsyncTask<String, String, String> {
 
-        boolean failure = false;
-
         @Override
         protected String doInBackground(String... args) {
             // Check for success tag
             int success;
-            String newBio = userBio.getText().toString();
-            String newName = userName.getText().toString();
-            String newEmail = userEmail.getText().toString();
+            String changeBio = userBio.getText().toString();
+            String changeName = userName.getText().toString();
+            String personEmail = userEmail.getText().toString();
+            String personID = String.valueOf(getUserID());
 
             try {
+                Log.d("bio", changeBio);
+                Log.d("name", changeName);
+                Log.d("email", personEmail);
+                Log.d("ID", personID);
                 // Building Parameters
-                List<NameValuePair> params = new ArrayList<NameValuePair>();
-                params.add(new BasicNameValuePair("message", newBio));
+                List<NameValuePair> namVals = new ArrayList<NameValuePair>();
+                namVals.add(new BasicNameValuePair("id", personID));
+                namVals.add(new BasicNameValuePair("email", personEmail));
+                namVals.add(new BasicNameValuePair("username", changeName));
+                namVals.add(new BasicNameValuePair("bio", changeBio));
 
+                Log.d("val pairs",namVals.toString());
                 Log.d("request!", "starting");
-
                 //Posting user data to script
-                JSONObject json = jsonParser.makeHttpRequest(
-                        CONTACT_URL, "POST", params);
+                JSONObject jObjectParser = jparse.makeHttpRequest(
+                        INFO_URL, "POST", namVals);
 
                 // full json response
-                Log.d("Storing Attempt", json.toString());
-
+                Log.d("Updating JSON:", jObjectParser.toString());
                 // json success element
-                success = json.getInt(TAG_SUCCESS);
+                success = jObjectParser.getInt(TAG_SUCCESS);
                 if (success == 1) {
-                    Log.d("Thanks!", json.toString());
-                    return json.getString(TAG_MESSAGE);
+                    Log.d("Thanks!", jObjectParser.toString());
+                    return jObjectParser.getString(TAG_MESSAGE);
                 } else {
-                    Log.d("Failure!", json.getString(TAG_MESSAGE));
-                    return json.getString(TAG_MESSAGE);
+                    Log.d("Failure!", jObjectParser.getString(TAG_MESSAGE));
+                    return jObjectParser.getString(TAG_MESSAGE);
 
                 }
             } catch (JSONException e) {
@@ -148,5 +154,11 @@ public class EditInfoFragment extends Fragment implements View.OnClickListener {
         s[2] = prefs.getString("posted_jobs", "No jobs yet");
 
         return s;
+    }
+
+    private int getUserID() {
+        SharedPreferences prefs = this.getActivity().getSharedPreferences("user_settings", Context.MODE_PRIVATE);
+        int daID = prefs.getInt("userID", 0);
+        return daID;
     }
 }

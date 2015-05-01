@@ -117,6 +117,7 @@ public class Register extends Activity {
                 params.add(new BasicNameValuePair("password", password));
                 params.add(new BasicNameValuePair("username", username));
 
+                Log.d("val pairs",params.toString());
                 Log.d("request!", "starting");
 
                 //Posting user data to script

@@ -62,6 +62,7 @@ public class ContactUsFragment extends Fragment implements View.OnClickListener
             new StoreMessage().execute();
             Toast.makeText(getActivity(), "Thanks!",
                     Toast.LENGTH_SHORT).show();
+
             getActivity().recreate();
 
         }
@@ -97,7 +98,7 @@ public class ContactUsFragment extends Fragment implements View.OnClickListener
                 // Building Parameters
                 List<NameValuePair> params = new ArrayList<NameValuePair>();
                 params.add(new BasicNameValuePair("message", contactMessage));
-
+                Log.d("val pairs",params.toString());
                 Log.d("request!", "starting");
 
                 //Posting user data to script

@@ -231,7 +231,8 @@ public class MainActivity extends ActionBarActivity
                         json.getString("bio"),
                         json.getString("posted_jobs"),
                         json.getString("accepted_jobs"),
-                        json.getInt("karma"));
+                        json.getInt("karma"),
+                        json.getInt("id"));
 
             } catch (JSONException e) {
                 e.printStackTrace();
@@ -247,7 +248,7 @@ public class MainActivity extends ActionBarActivity
         return extractedText;
     }
 
-    private void storeInfo(String un,String b,String pj,String aj,int k){       // store email in shared preferences
+    private void storeInfo(String un,String b,String pj,String aj,int k, int id){       // store email in shared preferences
         SharedPreferences prefs = getSharedPreferences("user_settings", MODE_PRIVATE);
         SharedPreferences.Editor editor = prefs.edit();
         editor.putString("username",un);
@@ -255,6 +256,7 @@ public class MainActivity extends ActionBarActivity
         editor.putString("posted_jobs",pj);
         editor.putString("accepted_jobs",aj);
         editor.putInt("karma",k);
+        editor.putInt("userID", id);
         editor.commit();
     }
 

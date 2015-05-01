@@ -113,6 +113,7 @@ public class JSONparser {
                 HttpResponse httpResponse = httpClient.execute(httpPost);
                 HttpEntity httpEntity = httpResponse.getEntity();
                 is = httpEntity.getContent();
+                //Log.d("params", params.toString());
 
             }else if(method == "GET"){
                 // request method is GET
@@ -144,6 +145,7 @@ public class JSONparser {
             }
             is.close();
             json = sb.toString();
+            //Log.d("What do you look like:", jObj.toString());
         } catch (Exception e) {
             Log.e("Buffer Error", "Error converting result " + e.toString());
         }
@@ -151,8 +153,12 @@ public class JSONparser {
         // try parse the string to a JSON object
         try {
             jObj = new JSONObject(json);
+            //Log.d("Nothing works", params.toString());
+            //Log.d("Lies", json.toString());
+            Log.d("hey", json.toString());
         } catch (JSONException e) {
             Log.e("JSON Parser", "Error parsing data " + e.toString());
+            Log.d("hey", json.toString());
         }
 
         // return JSON String
