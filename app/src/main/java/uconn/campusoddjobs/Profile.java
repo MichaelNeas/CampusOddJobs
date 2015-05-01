@@ -74,6 +74,14 @@ public class Profile extends Activity{
         return karma;
     }
     // -----------------------------
+    // ---------- Setters ----------
+    public void setEmail(String e){email = e;}
+    public void setUsername(String u){username = u;}
+    public void setBio(String b){bio = b;}
+    public void setPosted_jobs(String pj){posted_jobs = pj;}
+    public void setAccepted_jobs(String aj){accepted_jobs = aj;}
+    public void setKarma(int k){karma = k;}
+    // -----------------------------
 
     private String getEmailFromMemory() {          // pulls email from shared preferences
         Context context = MainActivity.getAppContext();
@@ -93,8 +101,8 @@ public class Profile extends Activity{
 
                 JSONObject json = jparser.makeHttpRequest(PROFILE_URL, "GET", params);
 
-                username = json.getString("username");
-                Log.d("Penis", username());
+                setUsername(json.getString("username"));
+                Log.d("Check", username());
 
             } catch (JSONException e) {
                 e.printStackTrace();
