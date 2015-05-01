@@ -67,6 +67,9 @@ public class LoginActivity extends Activity implements OnClickListener, LoaderCa
         //register listeners
         mSignIn.setOnClickListener(this);
         mRegister.setOnClickListener(this);
+
+        Button dev = (Button)findViewById(R.id.dev);
+        dev.setOnClickListener(this);
     }
 
     @Override
@@ -80,7 +83,13 @@ public class LoginActivity extends Activity implements OnClickListener, LoaderCa
                 Intent i = new Intent(this, Register.class);
                 startActivity(i);
                 break;
-
+            //-------TEMPORARY
+            case R.id.dev:
+                Intent j = new Intent(this,MainActivity.class);
+                storeEmail("test@uconn.edu");
+                startActivity(j);
+                break;
+            //-----------------
             default:
                 break;
         }
