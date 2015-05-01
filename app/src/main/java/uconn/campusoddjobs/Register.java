@@ -45,7 +45,7 @@ public class Register extends Activity {
         setContentView(R.layout.activity_register);
 
         // currently only email and password are registered
-        rEmailView = (EditText) findViewById(R.id.email);
+        rEmailView = (EditText) findViewById(R.id.userEmail);
         rPasswordView = (EditText) findViewById(R.id.pword);
         // TODO implement the remaining elements in the database (and make a column for karma)
         rUsernameView = (EditText) findViewById(R.id.uname);

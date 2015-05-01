@@ -103,6 +103,7 @@ public class NavigationDrawerFragment extends Fragment {
                         getString(R.string.title_section1),
                         getString(R.string.title_section2),
                         getString(R.string.title_section3),
+                        getString(R.string.title_section5),
                         getString(R.string.title_section4)
                 }));
         mDrawerListView.setItemChecked(mCurrentSelectedPosition, true);
@@ -246,12 +247,23 @@ public class NavigationDrawerFragment extends Fragment {
             return true;
         }
 
-        if (item.getItemId() == R.id.action_example) {
-            Toast.makeText(getActivity(), "Lol", Toast.LENGTH_SHORT).show();
+        if (item.getItemId() == R.id.happy_button) {
+            Toast.makeText(getActivity(), "=)", Toast.LENGTH_SHORT).show();
             return true;
         }
 
-        return super.onOptionsItemSelected(item);
+        if (item.getItemId() == R.id.action_example) {
+            Toast.makeText(getActivity(), "Vroom", Toast.LENGTH_SHORT).show();
+
+            return true;
+        }
+
+        if (item.getItemId() == R.id.action_settings){
+            Toast.makeText(getActivity(), "Settings", Toast.LENGTH_SHORT).show();
+            return true;
+        }
+
+            return super.onOptionsItemSelected(item);
     }
 
     /**

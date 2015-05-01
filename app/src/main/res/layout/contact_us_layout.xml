@@ -150,6 +150,14 @@
         android:src="@drawable/logo"
         android:layout_marginTop="41dp"
         android:layout_below="@+id/textView8"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/imageView2" />
+
+    <RatingBar
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/ratingBar"
+        android:layout_below="@+id/imageView2"
         android:layout_centerHorizontal="true" />
 
 </RelativeLayout>

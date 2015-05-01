@@ -10,24 +10,18 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import org.w3c.dom.Text;
+
 /**
  * Created by Neas on 4/4/15.
  */
 public class MyAccountFragment extends Fragment
 {
-    private static final String PROFILE_URL = "http://campusoddjobs.com/oddjobs/buildprofile.php";
-
     private String email;
-    private int id;
-    private String username;
-    private String bio;
-    private String posted_jobs;
-    private String accepted_jobs;
-    private int karma;
-
-    JSONparser jparser = new JSONparser();
-
     private TextView name;
+    private TextView textEmail;
+    private TextView bio;
+    private TextView textKarma;
 
     View rootview;
     @Nullable
@@ -42,6 +36,16 @@ public class MyAccountFragment extends Fragment
         name = (TextView) rootview.findViewById(R.id.nameview);
         name.setText(getInfo()[0]);
 
+        textEmail = (TextView) rootview.findViewById(R.id.userEmail);
+        textEmail.setText(email);
+
+        bio = (TextView) rootview.findViewById(R.id.bio);
+        bio.setText(getInfo()[1]);
+
+        textKarma = (TextView) rootview.findViewById(R.id.karma);
+        textKarma.setText(getKarma());
+
+
         return rootview;
     }
 
@@ -55,8 +59,15 @@ public class MyAccountFragment extends Fragment
         SharedPreferences prefs = this.getActivity().getSharedPreferences("user_settings",Context.MODE_PRIVATE);
         String[] s = new String[5];
         s[0] = prefs.getString("username","error:no username");
+        s[1] = prefs.getString("bio", "no bio yet!");
+        s[2] = prefs.getString("posted_jobs", "No jobs yet");
 
         return s;
     }
 
+    private String getKarma() {
+        SharedPreferences prefs = this.getActivity().getSharedPreferences("user_settings", Context.MODE_PRIVATE);
+        int karmaFun = prefs.getInt("karma", 0);
+        return String.valueOf(karmaFun);
+    }
 }

@@ -56,7 +56,7 @@ public class LoginActivity extends Activity implements OnClickListener, LoaderCa
         setContentView(R.layout.activity_login);
 
         //setup input fields
-        mEmailView = (AutoCompleteTextView) findViewById(R.id.email);
+        mEmailView = (AutoCompleteTextView) findViewById(R.id.userEmail);
         populateAutoComplete();
         mPasswordView = (EditText) findViewById(R.id.password);
 

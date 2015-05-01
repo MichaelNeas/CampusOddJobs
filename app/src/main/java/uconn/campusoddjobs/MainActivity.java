@@ -13,6 +13,7 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewConfiguration;
 import android.view.ViewGroup;
 
 import org.apache.http.NameValuePair;
@@ -20,6 +21,7 @@ import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -48,6 +50,19 @@ public class MainActivity extends ActionBarActivity
         mNavigationDrawerFragment.setUp(
                 R.id.navigation_drawer,
                 (DrawerLayout) findViewById(R.id.drawer_layout));
+
+        try {
+            ViewConfiguration config = ViewConfiguration.get(this);
+            Field menuKeyField = ViewConfiguration.class.getDeclaredField("sHasPermanentMenuKey");
+            if(menuKeyField != null) {
+                menuKeyField.setAccessible(true);
+                menuKeyField.setBoolean(config, false);
+            }
+        } catch (Exception ex) {
+            // Ignore
+        }
+
+
     }
 
     /**
@@ -73,6 +88,10 @@ public class MainActivity extends ActionBarActivity
                 mTitle = getString(R.string.title_section3);
                 break;
             case 3:
+                objectFragment = new EditInfoFragment();
+                mTitle = getString(R.string.title_section5);
+                break;
+            case 4:
                 objectFragment = new ContactUsFragment();
                 mTitle = getString(R.string.title_section4);
                 break;
@@ -102,6 +121,9 @@ public class MainActivity extends ActionBarActivity
                 mTitle = getString(R.string.title_section3);
                 break;
             case 3:
+                mTitle = getString(R.string.title_section5);
+                break;
+            case 4:
                 mTitle = getString(R.string.title_section4);
                 break;
         }
@@ -135,10 +157,18 @@ public class MainActivity extends ActionBarActivity
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
+
+        if(id == R.id.action_example){
+            onNavigationDrawerItemSelected(3);
+                    }
+
+
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
+
             return true;
         }
+
 
         return super.onOptionsItemSelected(item);
     }
@@ -182,12 +212,6 @@ public class MainActivity extends ActionBarActivity
                     getArguments().getInt(ARG_SECTION_NUMBER));
         }
     }
-
-    public SharedPreferences getSharedPrefs(){
-        SharedPreferences prefs = getSharedPreferences("user_settings", MODE_PRIVATE);
-        return prefs;
-    }
-
     class buildProfile extends AsyncTask<String, String, String> {
 
         JSONparser jparser = new JSONparser();
@@ -214,9 +238,7 @@ public class MainActivity extends ActionBarActivity
             }
 
             return null;
-
         }
-
     }
 
     private String getEmailFromMemory() {          // pulls email from shared preferences
