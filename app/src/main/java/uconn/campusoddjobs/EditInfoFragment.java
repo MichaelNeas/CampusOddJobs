@@ -1,12 +1,17 @@
 package uconn.campusoddjobs;
 
 
+import android.app.DialogFragment;
+import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -34,6 +39,8 @@ public class EditInfoFragment extends Fragment implements View.OnClickListener {
     private EditText userName;
     private String bioChange;
     private String changeEmail;
+
+    private ProgressDialog pDialog;
 
     private static final String INFO_URL = "http://campusoddjobs.com/oddjobs/infochange.php";
 
@@ -83,10 +90,16 @@ public class EditInfoFragment extends Fragment implements View.OnClickListener {
         else {
             //Intent intent = new Intent(Intent.ACTION_SEND);
             new UpdateInfo().execute();
-            Toast.makeText(getActivity(), "Thanks!",
+            Toast.makeText(getActivity(), "Changes Successful!",
                     Toast.LENGTH_SHORT).show();
-            getActivity().recreate();
 
+            final Handler handler = new Handler();
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    getActivity().recreate();
+                }
+            }, 1000);
         }
     }
 
@@ -124,7 +137,7 @@ public class EditInfoFragment extends Fragment implements View.OnClickListener {
                 // json success element
                 success = jObjectParser.getInt(TAG_SUCCESS);
                 if (success == 1) {
-                    Log.d("Thanks!", jObjectParser.toString());
+                    Log.d("Changes Successful!", jObjectParser.toString());
                     return jObjectParser.getString(TAG_MESSAGE);
                 } else {
                     Log.d("Failure!", jObjectParser.getString(TAG_MESSAGE));
@@ -137,7 +150,6 @@ public class EditInfoFragment extends Fragment implements View.OnClickListener {
 
             return null;
         }
-
 
     }
     private String getEmailFromMemory() {          // pulls email from shared preferences
