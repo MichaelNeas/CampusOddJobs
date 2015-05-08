@@ -15,6 +15,8 @@
 ============
 <p>www.campusoddjobs.com</p>
 <p>Android Studio 1.2</p>
+<p>MySQL Database</p>
+<p>php for interactions</p>
 ============
 <h5>Access Locations</h5>
 <p>Tests: app/src/androidTest/java/campusoddjobs.tests</p>

@@ -99,13 +99,12 @@ public class EditInfoFragment extends Fragment implements View.OnClickListener {
             Toast.makeText(getActivity(), "Changes Successful!",
                     Toast.LENGTH_SHORT).show();
 
-            final Handler handler = new Handler();
-            handler.postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    getActivity().recreate();
-                }
-            }, 2000);
+            Fragment fragment = new PostingBoardFragment();
+            // Insert the fragment by replacing any existing fragment
+            FragmentManager fragmentManager = getFragmentManager();
+            fragmentManager.beginTransaction()
+                    .replace(R.id.container, fragment)
+                    .commit();
         }
     }
 
