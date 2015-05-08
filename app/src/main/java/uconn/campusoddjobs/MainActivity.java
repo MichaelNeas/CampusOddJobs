@@ -162,6 +162,9 @@ public class MainActivity extends ActionBarActivity
             onNavigationDrawerItemSelected(3);
                     }
 
+        if(id == R.id.happy_button){
+            recreate();
+        }
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {

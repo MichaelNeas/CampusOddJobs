@@ -33,6 +33,8 @@ import java.util.List;
 public class EditInfoFragment extends Fragment implements View.OnClickListener {
 
     private Button updateButton;
+    private Button refreshButton;
+    private Button passwordButton;
     private EditText userBio;
     private EditText userEmail;
     private EditText userName;
@@ -40,8 +42,6 @@ public class EditInfoFragment extends Fragment implements View.OnClickListener {
     private String currentEmail;
     private String userChange;
     private String emailChange;
-
-    private ProgressDialog pDialog;
 
     private static final String INFO_URL = "http://campusoddjobs.com/oddjobs/infochange.php";
 
@@ -77,6 +77,12 @@ public class EditInfoFragment extends Fragment implements View.OnClickListener {
         updateButton = (Button)rootview.findViewById(R.id.button);
         updateButton.setOnClickListener(this);
 
+        refreshButton = (Button)rootview.findViewById(R.id.button5);
+        refreshButton.setOnClickListener(this);
+
+        passwordButton = (Button)rootview.findViewById(R.id.button4);
+        passwordButton.setOnClickListener(this);
+
         return rootview;
     }
 
@@ -95,16 +101,30 @@ public class EditInfoFragment extends Fragment implements View.OnClickListener {
         }
         else {
             //Intent intent = new Intent(Intent.ACTION_SEND);
-            new UpdateInfo().execute();
-            Toast.makeText(getActivity(), "Changes Successful!",
-                    Toast.LENGTH_SHORT).show();
+            switch (v.getId()) {
 
-            Fragment fragment = new PostingBoardFragment();
-            // Insert the fragment by replacing any existing fragment
-            FragmentManager fragmentManager = getFragmentManager();
-            fragmentManager.beginTransaction()
-                    .replace(R.id.container, fragment)
-                    .commit();
+                case R.id.button5:
+                    getActivity().recreate();
+                    break;
+
+                case R.id.button4:
+                    Toast.makeText(getActivity(), "Change request Sent",
+                            Toast.LENGTH_SHORT).show();
+                    break;
+
+                case R.id.button:
+                    new UpdateInfo().execute();
+                    Toast.makeText(getActivity(), "Changes Successful!",
+                            Toast.LENGTH_SHORT).show();
+                    getActivity().recreate();
+                    break;
+
+                default:
+                    break;
+            }
+
+
+
         }
     }
 

@@ -248,7 +248,7 @@ public class NavigationDrawerFragment extends Fragment {
         }
 
         if (item.getItemId() == R.id.happy_button) {
-            Toast.makeText(getActivity(), "=)", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getActivity(), "Refreshed", Toast.LENGTH_SHORT).show();
             return true;
         }
 
@@ -257,6 +257,10 @@ public class NavigationDrawerFragment extends Fragment {
 
             return true;
         }
+        //if (item.getItemId() == R.id.refresh) {
+          //  Toast.makeText(getActivity(), "Refresh", Toast.LENGTH_SHORT).show();
+            //return true;
+       // }
 
         if (item.getItemId() == R.id.action_settings){
             Toast.makeText(getActivity(), "Settings", Toast.LENGTH_SHORT).show();

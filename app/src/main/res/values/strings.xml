@@ -13,7 +13,7 @@
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="action_example">Edit Info</string>
     <string name="title_activity_register">Register</string>
-    <string name="happy_button">Happy Button</string>
-
-
+    <string name="happy_button">Refresh</string>
+    <string name="refresh">Refresh</string>
+    />
 </resources>

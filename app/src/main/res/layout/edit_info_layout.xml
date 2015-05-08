@@ -106,4 +106,15 @@
         android:layout_alignLeft="@+id/textView14"
         android:layout_alignStart="@+id/textView14" />
 
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Refresh Info"
+        android:id="@+id/button5"
+        android:layout_marginTop="39dp"
+        android:layout_below="@+id/button"
+        android:layout_alignRight="@+id/button"
+        android:layout_alignEnd="@+id/button" />
+
 </RelativeLayout>
