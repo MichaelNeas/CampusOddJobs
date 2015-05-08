@@ -21,3 +21,23 @@
 <h5>Access Locations</h5>
 <p>Tests: app/src/androidTest/java/campusoddjobs.tests</p>
 <p>Primary Source Code: app/src/main/java/uconn.campusoddjobs</p>
+============
+<p><b>How to run</b></p>
+
+<p>Download android studio: https://developer.android.com/sdk/index.html</p>
+
+<p>Download Zip: https://github.uconn.edu/ejh12002/CampusOddJobs</p>
+
+<p>File --> New --> Import Project --> (locate where you saved it)</p>
+
+<p>Connect android phone through a mini usb cable in debug mode.</p>
+
+<p>OR</p>
+
+<p>Use emulator provided by Android Studio (Laggy)</p>
+
+<p>Push Run</p>
+
+<p>Create an account/login/push test user button to bypass</p>
+
+<p>Explore/leave comments/rate!</p>

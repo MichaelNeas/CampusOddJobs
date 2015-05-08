@@ -1,0 +1,27 @@
+[23-Apr-2015 18:34:34 America/Chicago] PHP Parse error:  syntax error, unexpected '=', expecting ')' in /home2/ejh12002/public_html/oddjobs/contact.php on line 17
+[23-Apr-2015 18:34:36 America/Chicago] PHP Parse error:  syntax error, unexpected '=', expecting ')' in /home2/ejh12002/public_html/oddjobs/contact.php on line 17
+[23-Apr-2015 18:34:40 America/Chicago] PHP Parse error:  syntax error, unexpected '=', expecting ')' in /home2/ejh12002/public_html/oddjobs/contact.php on line 17
+[23-Apr-2015 18:34:41 America/Chicago] PHP Parse error:  syntax error, unexpected '=', expecting ')' in /home2/ejh12002/public_html/oddjobs/contact.php on line 17
+[23-Apr-2015 18:34:57 America/Chicago] PHP Parse error:  syntax error, unexpected '=', expecting ')' in /home2/ejh12002/public_html/oddjobs/contact.php on line 17
+[23-Apr-2015 18:35:23 America/Chicago] PHP Parse error:  syntax error, unexpected '=', expecting ')' in /home2/ejh12002/public_html/oddjobs/contact.php on line 17
+[23-Apr-2015 18:36:26 America/Chicago] PHP Parse error:  syntax error, unexpected ';', expecting ')' in /home2/ejh12002/public_html/oddjobs/contact.php on line 17
+[26-Apr-2015 19:24:06 America/Chicago] PHP Fatal error:  Call to a member function fetch() on a non-object in /home2/ejh12002/public_html/oddjobs/buildprofile.php on line 27
+[30-Apr-2015 14:14:39 America/Chicago] PHP Parse error:  syntax error, unexpected '$query' (T_VARIABLE) in /home2/ejh12002/public_html/oddjobs/buildprofile.php on line 5
+[30-Apr-2015 14:15:44 America/Chicago] PHP Parse error:  syntax error, unexpected '$query' (T_VARIABLE) in /home2/ejh12002/public_html/oddjobs/buildprofile.php on line 5
+[30-Apr-2015 16:48:57 America/Chicago] PHP Warning:  json_decode() expects parameter 1 to be string, array given in /home2/ejh12002/public_html/oddjobs/buildprofile.php on line 25
+[01-May-2015 03:10:37 America/Chicago] PHP Parse error:  syntax error, unexpected '$_POST' (T_VARIABLE), expecting '(' in /home2/ejh12002/public_html/oddjobs/infochange.php on line 11
+[01-May-2015 03:11:09 America/Chicago] PHP Parse error:  syntax error, unexpected '$_POST' (T_VARIABLE), expecting '(' in /home2/ejh12002/public_html/oddjobs/infochange.php on line 11
+[01-May-2015 03:31:34 America/Chicago] PHP Parse error:  syntax error, unexpected '$int' (T_VARIABLE), expecting ',' or ';' in /home2/ejh12002/public_html/oddjobs/infochange.php on line 28
+[01-May-2015 03:33:09 America/Chicago] PHP Parse error:  syntax error, unexpected '$int' (T_VARIABLE), expecting ',' or ';' in /home2/ejh12002/public_html/oddjobs/infochange.php on line 28
+[01-May-2015 03:34:02 America/Chicago] PHP Parse error:  syntax error, unexpected '$int' (T_VARIABLE), expecting ',' or ';' in /home2/ejh12002/public_html/oddjobs/infochange.php on line 28
+[01-May-2015 03:34:21 America/Chicago] PHP Parse error:  syntax error, unexpected '$newname' (T_VARIABLE), expecting ',' or ';' in /home2/ejh12002/public_html/oddjobs/infochange.php on line 29
+[01-May-2015 06:14:18 America/Chicago] PHP Parse error:  syntax error, unexpected ')' in /home2/ejh12002/public_html/oddjobs/infochange.php on line 40
+[01-May-2015 06:22:42 America/Chicago] PHP Parse error:  syntax error, unexpected 'json_encode' (T_STRING) in /home2/ejh12002/public_html/oddjobs/infochange.php on line 50
+[02-May-2015 11:11:02 America/Chicago] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home2/ejh12002/public_html/oddjobs/register.php:11) in /home2/ejh12002/public_html/oddjobs/config.inc.php on line 81
+[02-May-2015 11:11:02 America/Chicago] PHP Warning:  session_start(): Cannot send session cache limiter - headers already sent (output started at /home2/ejh12002/public_html/oddjobs/register.php:11) in /home2/ejh12002/public_html/oddjobs/config.inc.php on line 89
+[02-May-2015 11:12:03 America/Chicago] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home2/ejh12002/public_html/oddjobs/register.php:10) in /home2/ejh12002/public_html/oddjobs/config.inc.php on line 81
+[02-May-2015 11:12:03 America/Chicago] PHP Warning:  session_start(): Cannot send session cache limiter - headers already sent (output started at /home2/ejh12002/public_html/oddjobs/register.php:10) in /home2/ejh12002/public_html/oddjobs/config.inc.php on line 89
+[02-May-2015 11:12:35 America/Chicago] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home2/ejh12002/public_html/oddjobs/register.php:10) in /home2/ejh12002/public_html/oddjobs/config.inc.php on line 81
+[02-May-2015 11:12:35 America/Chicago] PHP Warning:  session_start(): Cannot send session cache limiter - headers already sent (output started at /home2/ejh12002/public_html/oddjobs/register.php:10) in /home2/ejh12002/public_html/oddjobs/config.inc.php on line 89
+[02-May-2015 11:13:17 America/Chicago] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home2/ejh12002/public_html/oddjobs/register.php:17) in /home2/ejh12002/public_html/oddjobs/config.inc.php on line 81
+[02-May-2015 11:13:17 America/Chicago] PHP Warning:  session_start(): Cannot send session cache limiter - headers already sent (output started at /home2/ejh12002/public_html/oddjobs/register.php:17) in /home2/ejh12002/public_html/oddjobs/config.inc.php on line 89
