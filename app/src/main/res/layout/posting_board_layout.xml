@@ -1,14 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent" android:layout_height="match_parent"
-    android:gravity="center">
+    android:gravity="center"
+    android:background="#666666">
 
-    <TextView
-        android:layout_width="wrap_content"
+    <Button
+        android:id="@+id/newpost"
+        android:layout_width="200dp"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Posting Board"
-        android:id="@+id/textView"
+        android:background="@drawable/button"
+        android:text="Post a job"
+        android:textStyle="bold"
+        android:textSize="20dp"
+        android:textColor="#ffffff"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true" />
+
+    <Button
+        android:id="@+id/toboard"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/button"
+        android:text="Find a job"
+        android:textStyle="bold"
+        android:textSize="20dp"
+        android:textColor="#ffffff"
+        android:layout_below="@+id/newpost"
+        android:layout_alignLeft="@+id/newpost"
+        android:layout_marginTop="10dp"/>
+
 </RelativeLayout>
