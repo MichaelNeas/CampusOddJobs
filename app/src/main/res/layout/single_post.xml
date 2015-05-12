@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
-    android:background="#f0f0f0"
+    android:background="#cccccc"
     android:orientation="vertical" >
 
     <LinearLayout
@@ -17,7 +17,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="2dp"
-            android:background="@drawable/post_background_style"
+            android:background="#666666"
             android:orientation="horizontal" >
 
             <ImageView
@@ -42,7 +42,7 @@
                     android:paddingBottom="2dip"
                     android:paddingLeft="5dp"
                     android:paddingTop="6dip"
-                    android:textColor="#333"
+                    android:textColor="#fff"
                     android:textSize="16sp"
                     android:textStyle="bold" />
 
@@ -52,7 +52,7 @@
                     android:layout_height="wrap_content"
                     android:paddingBottom="2dip"
                     android:paddingLeft="8dp"
-                    android:textColor="#888" >
+                    android:textColor="#fff" >
                 </TextView>
 
                 <LinearLayout
@@ -67,7 +67,7 @@
                         android:gravity="left"
                         android:paddingLeft="5dp"
                         android:text="Username: "
-                        android:textColor="#5d5d5d"
+                        android:textColor="#fff"
                         android:textStyle="bold" >
                     </TextView>
 
@@ -76,7 +76,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="left"
-                        android:textColor="#acacac"
+                        android:textColor="#fff"
                         android:textStyle="bold" >
                     </TextView>
                 </LinearLayout>

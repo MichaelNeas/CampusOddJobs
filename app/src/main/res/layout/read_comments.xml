@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#fff" >
+    android:background="#666666" >
 
     <LinearLayout
         android:id="@+id/top_layover"
@@ -10,17 +10,8 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
-        android:background="#666666"
+        android:background="#cccccc"
         android:orientation="horizontal" >
-
-        <TextView
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:gravity="center"
-            android:text="Board"
-            android:textColor="#ffffff"
-            android:textAppearance="?android:attr/textAppearanceLarge" />
     </LinearLayout>
 
     <ListView
@@ -29,17 +20,17 @@
         android:layout_height="wrap_content"
         android:layout_above="@+id/bottom_layover"
         android:layout_below="@+id/top_layover"
-        android:background="#fff"
+        android:background="#666666"
         android:divider="@android:color/transparent"
         android:scrollbars="none" />
 
     <LinearLayout
         android:id="@+id/bottom_layover"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
-        android:background="#cccccc"
+        android:background="#000000"
         android:orientation="horizontal"
         android:weightSum="2" >
 
@@ -48,6 +39,20 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:orientation="vertical" >
+
+            <Button
+                android:id="@+id/back"
+                android:textColor="#ffffff"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_gravity="left"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="5dp"
+                android:background="@drawable/button"
+                android:onClick="back"
+                android:text="Back"/>
+
+
         </LinearLayout>
 
         <LinearLayout
@@ -60,11 +65,14 @@
                 android:id="@+id/post_comment"
                 android:textColor="#ffffff"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="40dp"
                 android:layout_gravity="right"
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="5dp"
                 android:background="@drawable/button"
                 android:onClick="addComment"
                 android:text="Post" />
+
         </LinearLayout>
     </LinearLayout>
 

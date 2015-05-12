@@ -53,6 +53,11 @@ public class ReadComments extends ListActivity {
 		startActivity(i);
 	}
 
+    public void back(View v) {
+        Intent i = new Intent(ReadComments.this, MainActivity.class);
+        startActivity(i);
+    }
+
 	public void updateJSONdata() {
 
 		mCommentList = new ArrayList<HashMap<String, String>>();
